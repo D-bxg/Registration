@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxg.registration.mapper.AnnouncementMapper">
+    <select id="findAllAnnouncement" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from News
+    </select>
+    <select id="queryAnnouncementById" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from News
+        where newsId = #{newsId}
+    </select>
+    <insert id="addAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        insert into News (manageName, newsType, newsTitle, newsContent)
+        values (#{manageName}, #{newsType}, #{newsTitle}, #{newsContent})
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        update News
+        set manageName=#{manageName},
+            newsType=#{newsType},
+            newsTitle=#{newsTitle},
+            newsContent=#{newsContent}
+        where newsId = #{newsId}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="int">
+        delete
+        from News
+        where newsId = #{newsId}
+    </delete>
+</mapper>

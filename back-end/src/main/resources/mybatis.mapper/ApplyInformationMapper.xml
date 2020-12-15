@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxg.registration.mapper.AnnouncementMapper">
+    <select id="findAllAnnouncement" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from ApplyInformation
+    </select>
+    <select id="queryAnnouncementById" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from ApplyInformation
+        where applyInformationId = #{applyInformationId}
+    </select>
+    <insert id="addAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        insert into ApplyInformation (applyInformationUserName, applyInformationRegTime, applyInformationLoginTimes,
+                                      applyInformationLastTimes, applyInformationLasTip)
+        values (#{applyInformationUserName}, #{applyInformationRegTime}, #{applyInformationLoginTimes},
+                #{applyInformationLastTimes}, #{applyInformationLasTip})
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        update ApplyInformation
+        set applyInformationUserName=#{applyInformationUserName},
+            applyInformationRegTime=#{applyInformationRegTime},
+            applyInformationLoginTimes=#{applyInformationLoginTimes},
+            applyInformationLastTimes=#{applyInformationLastTimes},
+            applyInformationLasTip=#{applyInformationLasTip}
+        where applyInformationId = #{applyInformationId}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="int">
+        delete
+        from ApplyInformation
+        where applyInformationId = #{applyInformationId}
+    </delete>
+</mapper>

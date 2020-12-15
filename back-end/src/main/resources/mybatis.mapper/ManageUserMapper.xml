@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxg.registration.mapper.AnnouncementMapper">
+    <select id="findAllAnnouncement" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from ManageUser
+    </select>
+    <select id="queryAnnouncementById" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from ManageUser
+        where manageUserId = #{manageUserId}
+    </select>
+    <insert id="addAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        insert into ManageUser (manageUserRealName, manageUserSex, manageUserBirthday, manageUserProvince,
+                                manageUserCity, manageUserTelephone, manageUserEmail, manageUserQuestion,
+                                manageUserAnswer)
+        values (#{manageUserRealName}, #{manageUserSex}, #{manageUserBirthday}, #{manageUserProvince},
+                #{manageUserCity}, #{manageUserTelephone}, #{manageUserEmail}, #{manageUserQuestion},
+                #{manageUserAnswer})
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        update ManageUser
+        set manageUserRealName=#{manageUserRealName},
+            manageUserSex=#{manageUserSex},
+            manageUserBirthday=#{manageUserBirthday},
+            manageUserProvince=#{manageUserProvince},
+            manageUserCity=#{manageUserCity},
+            manageUserTelephone=#{manageUserTelephone},
+            manageUserEmail=#{manageUserEmail},
+            manageUserQuestion=#{manageUserQuestion},
+            manageUserAnswer=#{manageUserAnswer}
+        where manageUserId = #{manageUserId}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="int">
+        delete
+        from ManageUser
+        where manageUserId = #{manageUserId}
+    </delete>
+</mapper>

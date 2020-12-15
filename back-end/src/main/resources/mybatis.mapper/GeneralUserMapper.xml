@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxg.registration.mapper.GeneralUserMapper">
+    <select id="findAllGeneralUser" resultType="com.bxg.registration.pojo.GeneralUser">
+        select *
+        from GeneralUser
+    </select>
+    <select id="queryGeneralUserById" resultType="com.bxg.registration.pojo.GeneralUser">
+        select *
+        from GeneralUser
+        where generalUserId = #{generalUserId}
+    </select>
+    <insert id="addGeneralUser" parameterType="com.bxg.registration.pojo.GeneralUser">
+        insert into GeneralUser (generalUserName, generalUserPassword, generalUserType, generalUserRegTime,
+                                 generalUserLoginTimes, generalUserLastTimes, generalUserLasTip)
+        values (#{generalUserName}, #{generalUserPassword}, #{generalUserType}, #{generalUserRegTime},
+                #{generalUserLoginTimes}, #{generalUserLastTimes}, #{generalUserLasTip})
+    </insert>
+    <update id="updateGeneralUser" parameterType="com.bxg.registration.pojo.GeneralUser">
+        update GeneralUser
+        set generalUserName=#{generalUserName},
+            generalUserPassword=#{generalUserPassword},
+            generalUserType=#{generalUserType},
+            generalUserRegTime=#{generalUserRegTime},
+            generalUserLoginTimes=#{generalUserLoginTimes},
+            generalUserLastTimes=#{generalUserLastTimes},
+            generalUserLasTip=#{generalUserLasTip}
+        where generalUserId = #{generalUserId}
+    </update>
+    <delete id="deleteGeneralUser" parameterType="int">
+        delete
+        from GeneralUser
+        where generalUserId = #{generalUserId}
+    </delete>
+</mapper>

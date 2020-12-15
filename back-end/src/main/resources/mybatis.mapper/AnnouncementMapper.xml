@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxg.registration.mapper.AnnouncementMapper">
+    <select id="findAllAnnouncement" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from announcement
+    </select>
+    <select id="queryAnnouncementById" resultType="com.bxg.registration.pojo.Announcement">
+        select *
+        from announcement
+        where announcementId = #{announcementId}
+    </select>
+    <insert id="addAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        insert into announcement (manageName, announcementTitle, announcementContent)
+        values (#{manageName}, #{announcementTitle}, #{announcementContent})
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.bxg.registration.pojo.Announcement">
+        update announcement
+        set manageName=#{manageName},
+            announcementTitle=#{announcementTitle},
+            announcementContent=#{announcementContent}
+        where announcementId = #{announcementId}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="int">
+        delete
+        from announcement
+        where announcementId = #{announcementId}
+    </delete>
+</mapper>
