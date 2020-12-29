@@ -23,20 +23,15 @@ public interface GeneralUserMapper {
     GeneralUser queryGeneralUserByName(String generalUserName);
 
     //    增加一个
-    @Insert("insert into GeneralUser (generalUserName, generalUserPassword, generalUserType, generalUserRegTime," +
-            " generalUserLoginTimes, generalUserLastTimes, generalUserLasTip)" +
-            "values (#{generalUserName}, #{generalUserPassword}, #{generalUserType}, #{generalUserRegTime}," +
-            "#{generalUserLoginTimes}, #{generalUserLastTimes}, #{generalUserLasTip})")
+    @Insert("insert into GeneralUser (generalUserName, generalUserPassword)" +
+            " values (#{generalUserName}, #{generalUserPassword})")
     int addGeneralUser(GeneralUser generalUser);
 
     //    更新一个数据
     @Update("update GeneralUser set generalUserName=#{generalUserName}," +
-            "generalUserPassword=#{generalUserPassword}," +
-            "generalUserType=#{generalUserType}," +
-            "generalUserRegTime=#{generalUserRegTime}," +
-            "generalUserLoginTimes=#{generalUserLoginTimes}," +
-            "generalUserLastTimes=#{generalUserLastTimes}," +
-            "generalUserLasTip=#{generalUserLasTip} where generalUserId=#{generalUserId}")
+            " generalUserPassword=#{generalUserPassword}," +
+
+            "  where generalUserId=#{generalUserId}")
     int updateGeneralUser(GeneralUser generalUser);
 
     //    删除一个数据

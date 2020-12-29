@@ -2,6 +2,7 @@ package com.bxg.registration.service;
 
 import com.bxg.registration.mapper.ApplyInformationMapper;
 import com.bxg.registration.pojo.ApplyInformation;
+import com.bxg.registration.pojo.GeneralUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,11 @@ public class ApplyInformationService {
 
     public ApplyInformation queryApplyInformationById(int applyInformationId) {
         return applyInformationMapper.queryApplyInformationById(applyInformationId);
+    }
+
+    public List<ApplyInformation> queryApplyInformationByName(String applyInformationName) {
+        System.out.println(applyInformationName);
+        return applyInformationMapper.queryApplyInformationByName(applyInformationName);
     }
 
     public int addApplyInformation(ApplyInformation applyInformation) {

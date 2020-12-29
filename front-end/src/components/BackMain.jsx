@@ -23,7 +23,7 @@ class BackMain extends Component {
   render() {
     const { collapsed } = this.state;
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "calc(100vh-84px)" }}>
         <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
           <Menu
             theme="dark"
@@ -36,7 +36,8 @@ class BackMain extends Component {
                 <Link to="/backstage/user/apply">报名信息查看</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="管理员选项">
+            <Route path="backstage/manage">
+            <SubMenu  key="sub2" icon={<LaptopOutlined />} title="管理员选项">
               <Menu.Item key="2">
                 <Link to="/backstage/manage/apply">可报名项目管理</Link>
               </Menu.Item>
@@ -47,6 +48,7 @@ class BackMain extends Component {
                 <Link to="/backstage/manage/announcement">公告管理</Link>
               </Menu.Item>
             </SubMenu>
+            </Route>
           </Menu>
         </Sider>
         <Layout className="site-layout">

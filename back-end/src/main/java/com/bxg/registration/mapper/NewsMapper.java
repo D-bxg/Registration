@@ -13,33 +13,33 @@ import java.util.List;
 public interface NewsMapper {
     //    查询所有
     @Select("select *" +
-            "from News")
+            " from News")
     List<News> findAllNews();
 
     //    按号查询
     @Select("select *" +
-            "from News" +
-            "where newsId = #{newsId}")
+            " from News" +
+            " where newsId = #{newsId}")
     News queryNewsById(int newsId);
 
     //    增加一个
-    @Insert(" insert into News (manageName, newsType, newsTitle, newsContent)" +
-            "values (#{manageName}, #{newsType}, #{newsTitle}, #{newsContent})")
+    @Insert(" insert into News (  newsTitle, newsContent)" +
+            " values ( #{newsTitle}, #{newsContent})")
     int addNews(News news);
 
     //    更新一个数据
     @Update(" update News" +
-            "set manageName=#{manageName}," +
-            "    newsType=#{newsType}," +
+            " set " +
+
             "    newsTitle=#{newsTitle}," +
             "    newsContent=#{newsContent}" +
-            "where newsId = #{newsId}")
+            " where newsId = #{newsId}")
     int updateNews(News news);
 
     //    删除一个数据
     @Delete("delete" +
-            "from News" +
-            "where newsId = #{newsId}")
+            " from News" +
+            " where newsId = #{newsId}")
     int deleteNews(int newsId);
 
 }

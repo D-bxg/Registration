@@ -6,6 +6,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Account from "./Account";
 import FrontStage from "./FrontStage";
 import BackStage from "./BackStage";
+import Detail from "./Detail";
 //component antd
 
 class App extends Component {
@@ -21,6 +22,11 @@ class App extends Component {
           <Route path="/backstage">
             <BackStage></BackStage>
           </Route>
+          <Route path="/backstage1">
+            <BackStage></BackStage>
+          </Route>
+          {/* 报名信息 */}
+          <Route path="/detail/:newsId" component={Detail}></Route>
           {/* 前台 front stage */}
           <Route exact path="/">
             <FrontStage></FrontStage>

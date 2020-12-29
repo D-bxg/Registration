@@ -7,7 +7,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionIdListener;
 import java.util.List;
 
 @RestController
@@ -18,7 +20,7 @@ public class GeneraUserController {
     @Autowired
     private GeneralUserService generalUserService;
 
-    //       获取全部
+
     @CrossOrigin
     @GetMapping("/getAllGeneralUser")
     public List<GeneralUser> getAll() {
@@ -28,14 +30,14 @@ public class GeneraUserController {
         return generalUserList;
     }
 
-    //       根据hID找
+
     @GetMapping("/getGeneralUserById/{id}")
     public GeneralUser getById(@PathVariable("id") Integer generalUserId) {
         GeneralUser generalUser = generalUserService.queryGeneralUserById(generalUserId);
         return generalUser;
     }
 
-    //       根据name找
+
     @ApiOperation("根据一般用户姓名查找")
     @CrossOrigin
     @PostMapping("/getGeneralUserByName")
@@ -43,14 +45,14 @@ public class GeneraUserController {
         GeneralUser generalUser1 = generalUserService.queryGeneralUserByName(generalUser.getGeneralUserName());
         if (generalUser1.getGeneralUserName().equals(generalUser.getGeneralUserName())) {
             if (generalUser1.getGeneralUserPassword().equals(generalUser.getGeneralUserPassword())) {
-                httpSession.setAttribute("user",generalUser);
+                httpSession.setAttribute("user",generalUser1);
                 return "success";
             }
         }
         return "";
     }
 
-    //       保存
+
     @CrossOrigin
     @PostMapping("/saveGeneralUser")
     public String save(@RequestBody GeneralUser generalUser) {

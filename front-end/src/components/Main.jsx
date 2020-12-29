@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 // compoent
 import FrontMain from "./FrontMain";
 import BackMain from "./BackMain";
+import BackMain1 from "./BackMain1";
 // compoent antd
 // css
 import "../static/css/Main.min.css";
@@ -19,9 +20,13 @@ class Main extends Component {
         <Route exact path="/">
           <FrontMain></FrontMain>
         </Route>
+        <Route exact path="/backstage1">
+          <BackMain1></BackMain1>
+        </Route>
         <Route path="/backstage">
           <BackMain></BackMain>
         </Route>
+        
       </Switch>
     );
   }

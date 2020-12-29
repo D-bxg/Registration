@@ -13,31 +13,31 @@ import java.util.List;
 public interface AnnouncementMapper {
     //    查询所有
     @Select("select *" +
-            "from announcement")
+            " from announcement")
     List<Announcement> findAllAnnouncement();
 
     //    按号查询
     @Select("select *" +
-            "from announcement" +
-            "where announcementId = #{announcementId}")
+            " from announcement" +
+            " where announcementId = #{announcementId}")
     Announcement queryAnnouncementById(int announcementId);
 
     //    增加一个
     @Insert("insert into announcement (manageName, announcementTitle, announcementContent)\n" +
-            "values (#{manageName}, #{announcementTitle}, #{announcementContent})")
+            " values (#{manageName}, #{announcementTitle}, #{announcementContent})")
     int addAnnouncement(Announcement announcement);
 
     //    更新一个数据
     @Update("update announcement" +
-            "set manageName=#{manageName}," +
+            " set manageName=#{manageName}," +
             "    announcementTitle=#{announcementTitle}," +
             "    announcementContent=#{announcementContent}" +
-            "where announcementId = #{announcementId}")
+            " where announcementId = #{announcementId}")
     int updateAnnouncement(Announcement announcement);
 
     //    删除一个数据
     @Delete(" delete" +
-            "from announcement" +
-            "where announcementId = #{announcementId}")
+            " from announcement" +
+            " where announcementId = #{announcementId}")
     int deleteAnnouncement(int announcementId);
 }

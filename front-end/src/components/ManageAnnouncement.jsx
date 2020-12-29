@@ -1,15 +1,40 @@
+/*
+ * @Author: D_bxg
+ * @Date: 2020-12-15 16:20:53
+ * @LastEditors: D_bxg
+ * @LastEditTime: 2020-12-17 16:11:46
+ * @Description: file content
+ * @FilePath: \front-end\src\components\ManageAnnouncement.jsx
+ */
 import React, { Component } from "react";
 // route
+import ApiUrl from "../config/ApiUrl";
 import {} from "react-router-dom";
 // compoent
 // compoent antd
-import { Tabs, Table, List, Button, Modal, Form, Input } from "antd";
-import { PoweroffOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  Tabs,
+  Table,
+  List,
+  Button,
+  Modal,
+  Form,
+  Input,
+  message,
+  Spin,
+} from "antd";
+import {  UserOutlined } from "@ant-design/icons";
+// axios
+import Axios from "axios";
 // css
 // variable
 // variable antd
 const { TabPane } = Tabs;
-
+/**
+ * 字符串数组
+ *
+ * 列表显示内容的字符串
+ */
 const data1 = [
   "Racing car sprays burning fuel into crowd.",
   "Japanese princess to wed commoner.",
@@ -17,7 +42,16 @@ const data1 = [
   "Man charged over missing wedding girl.",
   "Los Angeles battles huge wildfires.",
 ];
-
+/**
+ * 对象数组
+ * 对象格式：
+ *    键值对
+ *    键值对
+ *    键值对-属性值：对象数组：
+ *                    两个键值对
+ *
+ * 表格格式
+ */
 const columns = [
   {
     title: "Name",
@@ -77,7 +111,11 @@ const columns = [
     sortDirections: ["descend", "ascend"],
   },
 ];
-
+/**
+ * 对象数组
+ *
+ * 表格内值
+ */
 const data = [
   {
     key: "1",
@@ -111,6 +149,7 @@ class ManageAnnouncement extends Component {
     this.state = {
       Set_isModalVisible: false,
       New_isModalVisible: false,
+      isLoading: false,
     };
   }
   // 设置新建的一套方法
@@ -166,6 +205,35 @@ class ManageAnnouncement extends Component {
     console.log("params", pagination, filters, sorter, extra);
   };
 
+  onFinish = (values) => {
+    this.setIsLoading(true);
+    Axios({
+      method: "post",
+      url: ApiUrl.saveNews,
+      data: values,
+      withCredentials: true,
+    }).then((res) => {
+      if (res.data === "success") {
+        // localStorage.setItem("token", res.data.token);
+        // setAuthToken(res.data.token);
+        this.setIsLoading(false);
+        message.success("新增成功");
+        // this.props.history.push("/");
+      } else {
+        message.error("添加错误");
+        // this.setIsLoading(false);
+      }
+    });
+    setTimeout(() => {
+      this.setIsLoading(false);
+    }, 300);
+  };
+  setIsLoading = (flag) => {
+    this.setState({
+      isLoading: flag,
+    });
+  };
+
   render() {
     return (
       <>
@@ -189,6 +257,8 @@ class ManageAnnouncement extends Component {
                   >
                     新增
                   </Button>
+                  {/* 增加一个公告的模态框 */}
+
                   <Modal
                     title="新增公告"
                     visible={this.state.New_isModalVisible}
@@ -197,52 +267,65 @@ class ManageAnnouncement extends Component {
                     cancelText="取消"
                     okText="完成"
                   >
-                    <Form>
-                      <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your username!",
-                          },
-                        ]}
+                    <Spin
+                      tip="加载中..."
+                      spinning={this.state.isLoading}
+                      style={{ backgroundColor: "rgb(255,255,255,0.3)" }}
+                    >
+                      <Form
+                        name="normal_login"
+                        className="login-form"
+                        initialValues={{ remember: true }}
+                        onFinish={this.onFinish}
                       >
-                        <Input
-                          placeholder="输入账号"
-                          prefix={<UserOutlined />}
-                        />
-                      </Form.Item>
-                      <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your username!",
-                          },
-                        ]}
-                      >
-                        <Input
-                          placeholder="输入账号"
-                          prefix={<UserOutlined />}
-                        />
-                      </Form.Item>
-                      <div className="account__submit">
-                        <div></div>
-                        <Form.Item>
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="login-form-button"
-                            icon={<PoweroffOutlined />}
-                          >
-                            登录
-                          </Button>
+                        公告标题
+                        <Form.Item
+                          label=""
+                          name="newsTitle"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your username!",
+                            },
+                          ]}
+                        >
+                          <Input
+                            placeholder="输入标题"
+                            prefix={<UserOutlined />}
+                          />
                         </Form.Item>
-                        <div></div>
-                      </div>
-                    </Form>
+                        公告内容：
+                        <Form.Item
+                          label=""
+                          name="newsContent"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your username!",
+                            },
+                          ]}
+                        >
+                          <Input
+                            placeholder="输入内容"
+                            prefix={<UserOutlined />}
+                          />
+                        </Form.Item>
+                        <div className="account__submit">
+                          <div></div>
+                          <Form.Item>
+                            <Button
+                              type="primary"
+                              htmlType="submit"
+                              className="login-form-button"
+                              // icon={<PoweroffOutlined />}
+                            >
+                              增加
+                            </Button>
+                          </Form.Item>
+                          <div></div>
+                        </div>
+                      </Form>
+                    </Spin>
                   </Modal>
                 </div>
               }

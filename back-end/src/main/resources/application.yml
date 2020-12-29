@@ -1,10 +1,11 @@
 #数据库连接信息
 spring:
   datasource:
-    username: root
-    password: 9843586gajizh
-    url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/registration?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:oracle:thin:@192.168.137.136:1521:helowin
+    username: user1
+    password: 123456
+    driver-class-name: oracle.jdbc.OracleDriver
     #切换数据源
     type: com.alibaba.druid.pool.DruidDataSource
   mvc:

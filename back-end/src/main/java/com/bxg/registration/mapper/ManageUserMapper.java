@@ -13,27 +13,27 @@ import java.util.List;
 public interface ManageUserMapper {
     //    查询所有
     @Select(" select *" +
-            "from ManageUser")
+            " from ManageUser")
     List<ManageUser> findAllManageUser();
 
     //    按号查询
     @Select(" select *" +
-            "from ManageUser" +
-            "where manageUserId = #{manageUserId}")
+            " from ManageUser" +
+            " where manageUserId = #{manageUserId}")
     ManageUser queryManageUserById(int manageUserId);
 
     //    增加一个
     @Insert("insert into ManageUser (manageUserRealName, manageUserSex, manageUserBirthday, manageUserProvince," +
-            "manageUserCity, manageUserTelephone, manageUserEmail, manageUserQuestion," +
-            "manageUserAnswer)" +
-            "values (#{manageUserRealName}, #{manageUserSex}, #{manageUserBirthday}, #{manageUserProvince}," +
-            "#{manageUserCity}, #{manageUserTelephone}, #{manageUserEmail}, #{manageUserQuestion}," +
-            "#{manageUserAnswer})")
+            " manageUserCity, manageUserTelephone, manageUserEmail, manageUserQuestion," +
+            " manageUserAnswer)" +
+            " values (#{manageUserRealName}, #{manageUserSex}, #{manageUserBirthday}, #{manageUserProvince}," +
+            " #{manageUserCity}, #{manageUserTelephone}, #{manageUserEmail}, #{manageUserQuestion}," +
+            " #{manageUserAnswer})")
     int addManageUser(ManageUser manageUser);
 
     //    更新一个数据
     @Update("update ManageUser" +
-            "set manageUserRealName=#{manageUserRealName}," +
+            " set manageUserRealName=#{manageUserRealName}," +
             "    manageUserSex=#{manageUserSex}," +
             "    manageUserBirthday=#{manageUserBirthday}," +
             "    manageUserProvince=#{manageUserProvince}," +
@@ -42,13 +42,13 @@ public interface ManageUserMapper {
             "    manageUserEmail=#{manageUserEmail}," +
             "    manageUserQuestion=#{manageUserQuestion}," +
             "    manageUserAnswer=#{manageUserAnswer}" +
-            "where manageUserId = #{manageUserId}")
+            " where manageUserId = #{manageUserId}")
     int updateManageUser(ManageUser manageUser);
 
     //    删除一个数据
     @Delete("delete" +
-            "from ManageUser" +
-            "where manageUserId = #{manageUserId}")
+            " from ManageUser" +
+            " where manageUserId = #{manageUserId}")
     int deleteManageUser(int manageUserId);
 
 }

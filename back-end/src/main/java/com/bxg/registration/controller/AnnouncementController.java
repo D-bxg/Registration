@@ -12,28 +12,28 @@ import java.util.List;
 @RequestMapping("/api/Announcement")
 //@Controller
 public class AnnouncementController {
-    //       从spring的bean库里面获取
+
     @Autowired
     private AnnouncementService announcementService;
 
-    //       获取全部
+
     @CrossOrigin
     @GetMapping("/getAllAnnouncement")
-    public List<Announcement> getAll() {
-        System.out.println("测试是否已经找到");
-        List<Announcement> AnnouncementList = announcementService.findAllAnnouncement();
-        System.out.println(AnnouncementList);
-        return AnnouncementList;
+        public List<Announcement> getAll() {
+            System.out.println("测试是否已经找到");
+            List<Announcement> AnnouncementList = announcementService.findAllAnnouncement();
+            System.out.println(AnnouncementList);
+            return AnnouncementList;
     }
 
-    //       根据merchID找
+
     @GetMapping("/getAnnouncementById/{id}")
     public Announcement getById(@PathVariable("id") Integer announcementId) {
         Announcement Announcement = announcementService.queryAnnouncementById(announcementId);
         return Announcement;
     }
 
-    //       保存
+
     @PostMapping("/saveAnnouncement")
     public String save(@RequestBody Announcement Announcement) {
         int flag = announcementService.addAnnouncement(Announcement);
@@ -47,7 +47,7 @@ public class AnnouncementController {
     @PostMapping("/updateAnnouncement")
     public String update(@RequestBody Announcement Announcement) {
         int flag = announcementService.updateAnnouncement(Announcement);
-        if (flag == 0) {
+            if (flag == 0) {
             return "error";
         } else {
             return "success";
@@ -63,5 +63,4 @@ public class AnnouncementController {
             return "success";
         }
     }
-
 }

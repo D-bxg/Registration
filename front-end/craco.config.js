@@ -2,9 +2,9 @@
  * @Author: D_bxg
  * @Date: 2020-12-09 16:16:23
  * @LastEditors: D_bxg
- * @LastEditTime: 2020-12-09 17:43:32
+ * @LastEditTime: 2020-12-25 13:31:37
  * @Description: antd全局变量
- * @FilePath: \registration\craco.config.js
+ * @FilePath: \front-end\craco.config.js
  */
 
 const CracoLessPlugin = require('craco-less');
@@ -16,7 +16,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { '@primary-color': '#722ED1' },
+            modifyVars: { '@primary-color': '#40a9ff' },
             javascriptEnabled: true,
           },
         },

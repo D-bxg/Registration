@@ -2,9 +2,11 @@ package com.bxg.registration.controller;
 
 import com.bxg.registration.pojo.News;
 import com.bxg.registration.service.NewsService;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 @RestController
 @RequestMapping("/api/News")
@@ -15,10 +17,11 @@ public class NewsController {
     //       获取全部
     @CrossOrigin
     @GetMapping("/getAllNews")
-    public List<News> getAll() {
+    public List<News> getAll(HttpSession httpSession) {
         System.out.println("测试是否已经找到");
         List<News> newsList = newsService.findAllNews();
         System.out.println(newsList);
+        System.out.println(httpSession.getAttribute("user"));
         return newsList;
     }
 
@@ -31,7 +34,9 @@ public class NewsController {
 
     //       保存
     @PostMapping("/saveNews")
-    public String save(@RequestBody News news) {
+    public String save(@RequestBody News news, HttpSession httpSession) {
+        String generalUserName =  (String) httpSession.getAttribute("generalUserName");
+        System.out.println(generalUserName);
         int flag = newsService.addNews(news);
         if (flag == 0) {
             return "error";

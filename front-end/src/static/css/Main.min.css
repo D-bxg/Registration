@@ -1,1 +1,1 @@
-.site-layout-content{min-height:100vh;background:#fff}
+.site-layout-content{min-height:calc(100vh - 64px);background:#fff}

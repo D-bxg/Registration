@@ -12,7 +12,7 @@ public class ManageUserController {
     @Autowired
     private ManageUserService manageUserService;
 
-    //       获取全部
+
     @CrossOrigin
     @GetMapping("/getAllManageUser")
     public List<ManageUser> getAll() {
@@ -22,14 +22,14 @@ public class ManageUserController {
         return manageUserList;
     }
 
-    //       根据merchID找
+
     @GetMapping("/getManageUserById/{id}")
     public ManageUser getById(@PathVariable("id") Integer manageUserId) {
         ManageUser manageUser = manageUserService.queryManageUserById(manageUserId);
         return manageUser;
     }
 
-    //       保存
+
     @PostMapping("/saveManageUser")
     public String save(@RequestBody ManageUser manageUser) {
         int flag = manageUserService.addManageUser(manageUser);
